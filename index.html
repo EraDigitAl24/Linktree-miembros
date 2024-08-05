@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copiando Texto...</title>
+</head>
+<body>
+    <script>
+        // El texto que deseas copiar
+        const textToCopy = "https://linktr.ee/Miembros_EraDigitAl";
+
+        // Crear un área de texto invisible
+        const textArea = document.createElement('textarea');
+        textArea.value = textToCopy;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+
+        // Mostrar un mensaje de éxito (opcional)
+        alert('Texto copiado al portapapeles');
+
+        // Redireccionar después de copiar (opcional)
+        // window.location.href = "https://www.ejemplo.com";
+    </script>
+</body>
+</html>

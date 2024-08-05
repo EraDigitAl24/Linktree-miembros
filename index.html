@@ -3,26 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Copiando Texto...</title>
+    <title>Copiar Texto</title>
 </head>
 <body>
+    <button id="copyButton">Haz clic aquí para copiar el texto</button>
     <script>
-        // El texto que deseas copiar
-        const textToCopy = "https://linktr.ee/Miembros_EraDigitAl";
+        document.getElementById('copyButton').addEventListener('click', function() {
+            // El texto que deseas copiar
+            const textToCopy = "https://linktr.ee/Miembros_EraDigitAl";
 
-        // Crear un área de texto invisible
-        const textArea = document.createElement('textarea');
-        textArea.value = textToCopy;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
+            // Crear un área de texto invisible
+            const textArea = document.createElement('textarea');
+            textArea.value = textToCopy;
+            textArea.style.position = 'fixed';  // Evita que el área de texto sea visible
+            textArea.style.opacity = '0';      // Hacer que sea invisible
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
 
-        // Mostrar un mensaje de éxito (opcional)
-        alert('Texto copiado al portapapeles');
+            // Intentar copiar el texto al portapapeles
+            try {
+                const successful = document.execCommand('copy');
+                const msg = successful ? 'Texto copiado al portapapeles' : 'Error al copiar el texto';
+                alert(msg);
+            } catch (err) {
+                console.error('Oops, no se pudo copiar', err);
+                alert('Oops, no se pudo copiar');
+            }
 
-        // Redireccionar después de copiar (opcional)
-        // window.location.href = "https://www.ejemplo.com";
+            // Eliminar el área de texto
+            document.body.removeChild(textArea);
+        });
     </script>
 </body>
 </html>
